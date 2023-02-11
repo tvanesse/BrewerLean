@@ -15,86 +15,85 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
+# DEBUG = config("DEBUG", cast=bool)
 
 # if DEBUG is True:
 #     ALLOWED_HOSTS = []
 # else:
 #     ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = config('ALLOWED_HOSTS',
-                       default=[],
-                       cast=Csv())
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default=[], cast=Csv())
 
 # Application definition
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'common',
-    'ebs',
-    'crm',
-    'yeast',
-    'delivery',
-    'product',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-    'widget_tweaks',
-    'bootstrap_datepicker_plus',
-    'bootstrap4',
-    'reset_migrations',
-    'tempus_dominus',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "common",
+    "ebs",
+    "crm",
+    "yeast",
+    "delivery",
+    "product",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google",
+    "widget_tweaks",
+    "bootstrap_datepicker_plus",
+    "bootstrap4",
+    "reset_migrations",
+    "tempus_dominus",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'BrewerLean.urls'
+ROOT_URLCONF = "BrewerLean.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'BrewerLean.wsgi.application'
+WSGI_APPLICATION = "BrewerLean.wsgi.application"
 
 ##########
 # Decouple allows for a single DB config, just make sure your
 # production configuration correct.
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('DATABASE_PW'),
-        'HOST': config('DATABASE_HOST'),
-        'PORT': config('DATABASE_PORT', cast=int),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": config("DATABASE_NAME"),
+        "USER": config("DATABASE_USER"),
+        "PASSWORD": config("DATABASE_PW"),
+        "HOST": config("DATABASE_HOST"),
+        "PORT": config("DATABASE_PORT", cast=int),
     }
 }
 
@@ -103,16 +102,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -120,9 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = config('TIME_ZONE')
+TIME_ZONE = config("TIME_ZONE")
 
 USE_I18N = True
 
@@ -133,40 +132,38 @@ USE_TZ = False
 # MEDIA files for pillow image upload
 
 if DEBUG is True:
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+    MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 else:
-    MEDIA_ROOT = config('MEDIA_ROOT')
+    MEDIA_ROOT = config("MEDIA_ROOT")
 
-MEDIA_URL = config('MEDIA_URL')
+MEDIA_URL = config("MEDIA_URL")
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 if DEBUG is True:
     STATICFILES_DIRS = [
-        BASE_DIR / 'static',
+        BASE_DIR / "static",
     ]
 else:
-    #STATIC_ROOT = '/home/ebs/ebs'
-    STATIC_ROOT = config('MY_STATIC_ROOT')
+    # STATIC_ROOT = '/home/ebs/ebs'
+    STATIC_ROOT = config("MY_STATIC_ROOT")
 
-STATIC_URL = '/static/'
+STATIC_URL = "/static/"
 
-if config('USE_GOOGLE_AUTH', cast=bool):
+if config("USE_GOOGLE_AUTH", cast=bool):
     AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.ModelBackend',
-        'allauth.account.auth_backends.AuthenticationBackend',
+        "django.contrib.auth.backends.ModelBackend",
+        "allauth.account.auth_backends.AuthenticationBackend",
     )
 else:
-    AUTHENTICATION_BACKENDS = (
-        'django.contrib.auth.backends.ModelBackend',
-    )
+    AUTHENTICATION_BACKENDS = ("django.contrib.auth.backends.ModelBackend",)
 
 # if DEBUG is True:
 #     SITE_ID = 4
 # else:
 #     SITE_ID = env.int('EBS_SITE_ID', default='4')
-SITE_ID = config('G_SITE_ID', cast=int)
+SITE_ID = config("G_SITE_ID", cast=int)
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
@@ -178,14 +175,14 @@ LOGOUT_REDIRECT_URL = "/"
 # module, above.  Any further authentication provider
 # would need to be implemented.
 SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
         ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
     }
 }
 
@@ -193,9 +190,9 @@ SOCIALACCOUNT_PROVIDERS = {
 # Because I'm not a front-end designer and because bootstrap
 # is easy, that's what we're using.
 BOOTSTRAP4 = {
-    'include_jquery': True,
+    "include_jquery": True,
 }
 
 ##########
 # This is required after a django 3.2 migration
-DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
